@@ -7,7 +7,7 @@ bits = 16
 channels = 1
 volume = 4096
 freq = 440
-duration = 1000
+duration = 2000
 
 # Initialize pygame mixer
 pygame.mixer.pre_init(sampling_rate, -bits, channels) 
@@ -23,7 +23,7 @@ snd_array = np.array(snd_list).astype(np.int16)
 # Get the sound based on the array
 sound = pygame.sndarray.make_sound(snd_array)
 # Play and loop
-sound.play(-1)
+sound.play()
 # Stop after <duration>
 pygame.time.delay(duration)
 # Stop playing
