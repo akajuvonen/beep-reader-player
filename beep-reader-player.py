@@ -15,16 +15,22 @@ def main():
     # Set some variables
     sampling_rate = 44100
     bits = 16
+    # In this case: mono
     channels = 1
+    # Volume from 0 to 1
     volume = 0.5
+    # Note frequency
     freq = 440
+    # Note duration in seconds
     duration = 2.0
+    # The duration this program is alive, right now the same as note duration
     wait_duration = duration
 
     # Initialize pygame mixer
     pygame.mixer.pre_init(sampling_rate, -bits, channels) 
     pygame.init()
 
+    # Create the wave
     wave = create_wave(bits,sampling_rate,volume,freq,duration)
     # Get the sound based on the array
     sound = pygame.sndarray.make_sound(wave)
