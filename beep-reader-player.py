@@ -2,7 +2,8 @@ import pygame
 import numpy as np
 
 # Add the data points to an array (create the wave)
-def create_wave(sampling_rate,volume,freq,duration):
+def create_wave(bits,sampling_rate,volume,freq,duration):
+    volume = pow(2,bits-1)-1
     snd_list = []
     for x in range(0,int(sampling_rate*duration)):
         value = volume * np.sin(2 * np.pi * freq * x / sampling_rate)
@@ -15,7 +16,7 @@ def main():
     sampling_rate = 44100
     bits = 16
     channels = 1
-    volume = 4096
+    volume = 0.5
     freq = 440
     duration = 2.0
     wait_duration = duration
@@ -24,7 +25,7 @@ def main():
     pygame.mixer.pre_init(sampling_rate, -bits, channels) 
     pygame.init()
 
-    wave = create_wave(sampling_rate,volume,freq,duration)
+    wave = create_wave(bits,sampling_rate,volume,freq,duration)
     # Get the sound based on the array
     sound = pygame.sndarray.make_sound(wave)
     # Play and loop
