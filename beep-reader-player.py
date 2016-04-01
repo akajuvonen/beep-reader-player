@@ -14,6 +14,8 @@ def create_wave(bits,sampling_rate,volume,freq,duration):
     snd_array -- Array of the notes sine wave values, as 16-bit numpy integers
     """
     # Calculate the volume based on the used bit value (signed int)
+    if volume<0: volume = 0
+    if volume>1: volume = 1
     volume = pow(2,bits-1)-1
     # An empty list
     snd_list = []
