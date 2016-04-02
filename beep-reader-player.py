@@ -65,14 +65,14 @@ def main():
     pygame.init()
 
     # Create the wave
-    note = create_melody(bits,sampling_rate,volumes,freqs,durations)
+    melody = create_melody(bits,sampling_rate,volumes,freqs,durations)
     # Create a numpy array of the list, needed later.
     # Note: We don't create a numpy array earlier, because when
     # appending values to it, a new array is always created.
     # That is not efficient.
-    note = np.array(note).astype(np.int16)
+    melody = np.array(melody).astype(np.int16)
     # Get the sound based on the array
-    sound = pygame.sndarray.make_sound(note)
+    sound = pygame.sndarray.make_sound(melody)
     # Play and loop
     sound.play()
     # Stop after <duration>
