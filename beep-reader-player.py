@@ -47,7 +47,7 @@ def create_melody(bits,sampling_rate,volumes,freqs,durations):
 
 def main():
     # Set some variables
-    sampling_rate = 44100
+    sampling_rate = 8000
     bits = 16
     # In this case: mono
     channels = 1
