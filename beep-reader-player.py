@@ -1,6 +1,9 @@
 import pygame
 import numpy as np
 
+NOTES = ['C4','C#4','D4','D#4','E4','F4','F#4','G4','G#4','A4','A#4','B4']
+A4_FREQ = 440
+
 # Add the data points to an array (create the wave)
 def create_note(bits,sampling_rate,volume,freq,duration):
     """Creates a single note as a sine wave.
