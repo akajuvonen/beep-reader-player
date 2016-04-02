@@ -11,7 +11,7 @@ def create_note(bits,sampling_rate,volume,freq,duration):
     freq -- The frequency of the note
     duration -- Duration of the note in seconds
     Returns:
-    snd_array -- Array of the notes sine wave values, as 16-bit numpy integers
+    snd_array -- A list of sine wave values based on the current note
     """
     # Calculate the volume based on the used bit value (signed int)
     if volume<0: volume = 0
@@ -26,15 +26,23 @@ def create_note(bits,sampling_rate,volume,freq,duration):
     return note
 
 def create_melody(bits,sampling_rate,volumes,freqs,durations):
+    """Creates and returns a melody consisting of one or more notes.
+    Arguments:
+    bits -- How many bits are used in the values, e.g., 16
+    sampling_rate -- How many samples per second, e.g., 44100
+    volumes -- A list of volumes for individual notes
+    freqs -- A list of frequencies for individual notes
+    durations -- Note durations in a list
+    Returns:
+    melody -- A list of wave values based on the current melody
+    """
     melody = []
+    # Go through the list
     for volume,freq,duration in zip(volumes,freqs,durations):
+        # Create an individual note
         note = create_note(bits,sampling_rate,volume,freq,duration)
+        # Add a note to the melody list
         melody.extend(note)
-    # Create a numpy array of the list, needed later.
-    # Note: We don't create a numpy array earlier, because when
-    # appending values to it, a new array is always created.
-    # That is not efficient.
-    melody = np.array(melody).astype(np.int16)
     return melody
 
 def main():
@@ -45,9 +53,9 @@ def main():
     channels = 1
     # Volumes from 0 to 1
     volumes = [0.5,0.5]
-    # Note frequency
+    # Note frequencies
     freqs = [440,880]
-    # Note duration in seconds
+    # Note durations in seconds
     durations = [1.0,2.0]
     # The duration this program is alive, right now the same as note duration
     wait_duration = sum(durations)
@@ -57,9 +65,14 @@ def main():
     pygame.init()
 
     # Create the wave
-    wave = create_melody(bits,sampling_rate,volumes,freqs,durations)
+    note = create_melody(bits,sampling_rate,volumes,freqs,durations)
+    # Create a numpy array of the list, needed later.
+    # Note: We don't create a numpy array earlier, because when
+    # appending values to it, a new array is always created.
+    # That is not efficient.
+    note = np.array(note).astype(np.int16)
     # Get the sound based on the array
-    sound = pygame.sndarray.make_sound(wave)
+    sound = pygame.sndarray.make_sound(note)
     # Play and loop
     sound.play()
     # Stop after <duration>
