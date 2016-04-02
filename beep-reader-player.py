@@ -4,6 +4,7 @@ import numpy as np
 # Add the data points to an array (create the wave)
 def create_wave(bits,sampling_rate,volume,freq,duration):
     """Creates an array of sine wave values based on certain parameters.
+    Essentially creates a wave of a single note.
     Arguments:
     bits -- How many bits are used in the values, e.g., 16
     sampling_rate -- How many samples per second, e.g., 44100
