@@ -18,17 +18,24 @@ def create_note(bits,sampling_rate,volume,freq,duration):
     if volume>1: volume = 1
     volume = pow(2,bits-1)-1
     # An empty list
-    snd_list = []
+    note = []
     # Fill the list with sine wave values
     for x in range(0,int(sampling_rate*duration)):
         value = volume * np.sin(2 * np.pi * freq * x / sampling_rate)
-        snd_list.append(value)
+        note.append(value)
+    return note
+
+def create_melody(bits,sampling_rate,volumes,freqs,durations):
+    melody = []
+    for volume,freq,duration in zip(volumes,freqs,durations):
+        note = create_note(bits,sampling_rate,volume,freq,duration)
+        melody.extend(note)
     # Create a numpy array of the list, needed later.
     # Note: We don't create a numpy array earlier, because when
     # appending values to it, a new array is always created.
     # That is not efficient.
-    snd_array = np.array(snd_list).astype(np.int16)
-    return snd_array
+    melody = np.array(melody).astype(np.int16)
+    return melody
 
 def main():
     # Set some variables
@@ -36,21 +43,21 @@ def main():
     bits = 16
     # In this case: mono
     channels = 1
-    # Volume from 0 to 1
-    volume = 0.5
+    # Volumes from 0 to 1
+    volumes = [0.5,0.5]
     # Note frequency
-    freq = 440
+    freqs = [440,880]
     # Note duration in seconds
-    duration = 2.0
+    durations = [1.0,2.0]
     # The duration this program is alive, right now the same as note duration
-    wait_duration = duration
+    wait_duration = sum(durations)
 
     # Initialize pygame mixer
     pygame.mixer.pre_init(sampling_rate, -bits, channels) 
     pygame.init()
 
     # Create the wave
-    wave = create_note(bits,sampling_rate,volume,freq,duration)
+    wave = create_melody(bits,sampling_rate,volumes,freqs,durations)
     # Get the sound based on the array
     sound = pygame.sndarray.make_sound(wave)
     # Play and loop
