@@ -45,7 +45,7 @@ def create_melody(bits,sampling_rate,volumes,freqs,durations):
         melody.extend(note)
     return melody
 
-def calculate_freq(note):
+def calculate_note_freq(note):
     """Calculates the frequency of a give note based on it's name and frequency of A4=440Hz.
     """
     notes = ['C4','C#4','D4','D#4','E4','F4','F#4','G4','G#4','A4','A#4','B4']
@@ -70,7 +70,7 @@ def main():
     # Note frequencies
     freqs = []
     for note in notes:
-        freqs.append(calculate_freq(note))
+        freqs.append(calculate_note_freq(note))
     # Note durations in seconds
     durations = [1.0,1.0,1.0,1.0,1.0]
     # The duration this program is alive, right now the same as note duration
