@@ -50,7 +50,7 @@ def calculate_freq(note):
     """
     notes = ['C4','C#4','D4','D#4','E4','F4','F#4','G4','G#4','A4','A#4','B4']
     baseind = notes.index('A4')
-    noteind = notes.index('note')
+    noteind = notes.index(note)
     n = baseind - noteind
     a = 1.059463094359
     f0 = 440
@@ -65,8 +65,12 @@ def main():
     channels = 1
     # Volumes from 0 to 1
     volumes = [0.5,0.5]
+    # The notes to be played
+    notes = ['C4','D4']
     # Note frequencies
-    freqs = [440,880]
+    freqs = []
+    for note in notes:
+        freqs.append(calculate_freq(note))
     # Note durations in seconds
     durations = [1.0,2.0]
     # The duration this program is alive, right now the same as note duration
