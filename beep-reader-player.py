@@ -64,15 +64,15 @@ def main():
     # In this case: mono
     channels = 1
     # Volumes from 0 to 1
-    volumes = [0.5,0.5]
+    volumes = [0.5,0.5,0.5,0.5,0.5]
     # The notes to be played
-    notes = ['C4','D4']
+    notes = ['C4','D4','E4','F4','G4']
     # Note frequencies
     freqs = []
     for note in notes:
         freqs.append(calculate_freq(note))
     # Note durations in seconds
-    durations = [1.0,2.0]
+    durations = [1.0,1.0,1.0,1.0,1.0]
     # The duration this program is alive, right now the same as note duration
     wait_duration = sum(durations)
 
