@@ -1,9 +1,6 @@
 import pygame
 import numpy as np
 
-NOTES = ['C4','C#4','D4','D#4','E4','F4','F#4','G4','G#4','A4','A#4','B4']
-A4_FREQ = 440
-
 # Add the data points to an array (create the wave)
 def create_note(bits,sampling_rate,volume,freq,duration):
     """Creates a single note as a sine wave.
@@ -47,6 +44,17 @@ def create_melody(bits,sampling_rate,volumes,freqs,durations):
         # Add a note to the melody list
         melody.extend(note)
     return melody
+
+def calculate_freq(note):
+    """Calculates the frequency of a give note based on it's name and frequency of A4=440Hz.
+    """
+    notes = ['C4','C#4','D4','D#4','E4','F4','F#4','G4','G#4','A4','A#4','B4']
+    baseind = notes.index('A4')
+    noteind = notes.index('note')
+    n = baseind - noteind
+    a = 1.059463094359
+    f0 = 440
+    freq = f0 * pow(a,n)
 
 def main():
     # Set some variables
