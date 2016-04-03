@@ -55,6 +55,7 @@ def calculate_freq(note):
     a = 1.059463094359
     f0 = 440
     freq = f0 * pow(a,n)
+    return freq
 
 def main():
     # Set some variables
