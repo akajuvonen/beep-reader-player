@@ -52,12 +52,19 @@ def calculate_note_freq(note):
     Returns:
     The frequency of the given note
     """
+    # The note name list
     notes = ['C4','C#4','D4','D#4','E4','F4','F#4','G4','G#4','A4','A#4','B4']
+    # The index of A4 in the list
     baseind = notes.index('A4')
+    # The index of the note in the list
     noteind = notes.index(note)
+    # The index difference (how many semitones difference from A4)
     n = noteind - baseind
+    # Approximately 2^(1/12)
     a = 1.059463094359
+    # Frequency of A4
     f0 = 440
+    # The frequency calculation
     freq = f0 * pow(a,n)
     return freq
 
