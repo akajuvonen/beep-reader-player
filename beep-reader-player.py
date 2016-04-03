@@ -47,6 +47,10 @@ def create_melody(bits,sampling_rate,volumes,freqs,durations):
 
 def calculate_note_freq(note):
     """Calculates the frequency of a give note based on it's name and frequency of A4=440Hz.
+    Arguments:
+    note -- The note name, e.g., 'C4' (string)
+    Returns:
+    The frequency of the given note
     """
     notes = ['C4','C#4','D4','D#4','E4','F4','F#4','G4','G#4','A4','A#4','B4']
     baseind = notes.index('A4')
