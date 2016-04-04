@@ -47,19 +47,25 @@ def create_melody(bits,sampling_rate,volumes,freqs,durations):
 
 def calculate_note_freq(note):
     """Calculates the frequency of a give note based on it's name and frequency of A4=440Hz.
+    All notes and octaves are supported.
     Arguments:
     note -- The note name, e.g., 'C4' (string)
     Returns:
     The frequency of the given note
     """
+    note_name = note[0]
+    note_octave = int(note[1])
     # The note name list
-    notes = ['C4','C#4','D4','D#4','E4','F4','F#4','G4','G#4','A4','A#4','B4']
-    # The index of A4 in the list
-    baseind = notes.index('A4')
+    notes = ['C','C#','D','D#','E','F','F#','G','G#','A','A#','B']
+    # The index of A in the list
+    baseind = 9
     # The index of the note in the list
-    noteind = notes.index(note)
-    # The index difference (how many semitones difference from A4)
+    noteind = notes.index(note_name)
+    # The index difference (how many semitones difference from A)
     n = noteind - baseind
+    # Take into account the octave (relative to A4, that's why we have 4 here)
+    # Now n is the number of semitones difference from the note and A4
+    n = n + (4-note_octave)*12
     # Approximately 2^(1/12)
     a = 1.059463094359
     # Frequency of A4
