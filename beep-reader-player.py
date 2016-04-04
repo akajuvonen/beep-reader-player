@@ -47,14 +47,14 @@ def create_melody(bits,sampling_rate,volumes,freqs,durations):
 
 def calculate_note_freq(note):
     """Calculates the frequency of a give note based on it's name and frequency of A4=440Hz.
-    All notes and octaves are supported.
+    All notes and octaves are supported. Not case sensitive.
     Arguments:
     note -- The note name and octave, e.g., 'C4' (string)
     Returns:
     The frequency of the given note
     """
     # The name of the note, e.g., 'A'
-    note_name = note[0]
+    note_name = note[0].upper()
     # The octave of the note, e.g., 4
     note_octave = int(note[1])
     # The note name list
