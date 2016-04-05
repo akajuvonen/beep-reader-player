@@ -82,10 +82,13 @@ def main():
     bits = 16
     # In this case: mono
     channels = 1
-    # Volumes from 0 to 1
-    volumes = [0.5,0.5,0.5,0.5,0.5]
     # The notes to be played
     notes = ['C4','D4','E4','F4','G4']
+    # Volumes from 0 to 1
+    # In this case all volume values are 0.5
+    volumes = []
+    for i in range(len(notes)):
+        volumes.append(0.5)
     # Note frequencies
     freqs = []
     for note in notes:
