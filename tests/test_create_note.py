@@ -14,4 +14,13 @@ class CreateNoteTest(unittest.TestCase):
 
     def test_volume(self):
         """Max volume always between 0 and 1"""
-        pass
+        # Volume less than 0
+        volume = -2.0
+        note = create_note(16,8000,volume,440,1.0)
+        # Make sure values correct
+        self.assertEqual(max(note),0.0)
+        # Volume over 1
+        volume = 12.0
+        note = create_note(16,8000,volume,440,1.0)
+        # Make sure max value still correct
+        self.assertEqual(max(note),32767.0)
