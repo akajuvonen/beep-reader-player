@@ -16,13 +16,14 @@ def create_note(bits,sampling_rate,volume,freq,duration):
     # Make sure volume between 0 and 1
     if volume<0.0: volume = 0.0
     if volume>1.0: volume = 1.0
-    # Calculate the volume based on the used bit value (signed int)
-    volume = pow(2,bits-1)-1
+    # Calculate the maximum int value based on the used bit value (signed int)
+    # Basically: what is the maximum signed int value for the amount of bits selected
+    max_value = pow(2,bits-1)-1
     # An empty list
     note = []
     # Fill the list with sine wave values
     for x in range(0,int(sampling_rate*duration)):
-        value = volume * np.sin(2 * np.pi * freq * x / sampling_rate)
+        value = volume * max_value * np.sin(2 * np.pi * freq * x / sampling_rate)
         note.append(value)
     return note
 
