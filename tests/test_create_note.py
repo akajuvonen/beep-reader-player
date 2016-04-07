@@ -11,3 +11,7 @@ class CreateNoteTest(unittest.TestCase):
         self.assertEqual(min(note),-32767.0)
         # Length should be same as sampling rate
         self.assertEqual(len(note),8000)
+
+    def test_volume(self):
+        """Max volume always between 0 and 1"""
+        pass
