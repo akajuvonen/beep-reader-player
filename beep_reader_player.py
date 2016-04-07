@@ -14,8 +14,8 @@ def create_note(bits,sampling_rate,volume,freq,duration):
     snd_array -- A list of sine wave values based on the current note
     """
     # Calculate the volume based on the used bit value (signed int)
-    if volume<0: volume = 0
-    if volume>1: volume = 1
+    if volume<0.0: volume = 0.0
+    if volume>1.0: volume = 1.0
     volume = pow(2,bits-1)-1
     # An empty list
     note = []
