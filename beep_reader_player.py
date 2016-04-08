@@ -111,6 +111,8 @@ def main():
     # Note: We don't create a numpy array earlier, because when
     # appending values to it, a new array is always created.
     # That is not efficient.
+    # Also, in this phase the whole array is converted to integers.
+    # Floats cannot be used for pygame sndarray.
     melody = np.array(melody).astype(np.int16)
     # Get the sound based on the array
     sound = pygame.sndarray.make_sound(melody)
