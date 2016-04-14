@@ -3,6 +3,21 @@
 import pygame
 import numpy as np
 
+def int_max_value(bits,signed=True):
+    """Returns the maximum int value of a signed or unsigned integer
+    based on used bits.
+    Arguments:
+    bits -- How many bits, e.g., 16
+    signed -- True if a signed int
+    Returns:
+    max_value -- The maximum int value based on given parameters
+    """
+    if signed:
+        max_value = pow(2,bits-1)-1
+    else:
+        pass
+    return max_value
+
 # Add the data points to an array (create the wave)
 def create_note(bits,sampling_rate,volume,freq,duration):
     """Creates a single note as a sine wave.
@@ -21,7 +36,7 @@ def create_note(bits,sampling_rate,volume,freq,duration):
     if volume>1.0: volume = 1.0
     # Calculate the maximum int value based on the used bit value (signed int)
     # Basically: what is the maximum signed int value for the amount of bits selected
-    max_value = pow(2,bits-1)-1
+    max_value = int_max_value(bits)
     # An empty list
     note = []
     # Fill the list with sine wave values
