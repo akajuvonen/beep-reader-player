@@ -13,9 +13,11 @@ def int_max_value(bits,signed=True):
     max_value -- The maximum int value based on given parameters
     """
     if signed:
+        # Signed int
         max_value = pow(2,bits-1)-1
     else:
-        pass
+        # Unsigned int
+        max_value = pow(2,bits)-1
     return max_value
 
 # Add the data points to an array (create the wave)
