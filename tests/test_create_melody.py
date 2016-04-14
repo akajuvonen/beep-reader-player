@@ -1,5 +1,6 @@
 import unittest
 from beep_reader_player import create_melody
+from beep_reader_player import int_max_value
 
 class CreateMelodyTest(unittest.TestCase):
     """Test create_melody function"""
@@ -19,3 +20,7 @@ class CreateMelodyTest(unittest.TestCase):
         melody_samples = sum(self.durations) * self.sampling_rate
         # Make sure it actually is
         self.assertEqual(melody_samples,len(melody))
+
+        # Make sure the max volume (int value) is not exceeded
+        max_value = int_max_value(self.bits)
+        self.assertTrue(max(melody) <= max_value)
