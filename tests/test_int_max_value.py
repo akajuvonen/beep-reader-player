@@ -1,7 +1,7 @@
 import unittest
 from beep_reader_player import int_max_value
 
-class CreateMelodyTest(unittest.TestCase):
+class IntMaxTest(unittest.TestCase):
     def setUp(self):
         self.bits = 16
         self.signed_expected_max = 32767
