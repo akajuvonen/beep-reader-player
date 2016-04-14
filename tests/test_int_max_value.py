@@ -10,7 +10,11 @@ class CreateMelodyTest(unittest.TestCase):
         self.unsigned_expected_min = 0
 
     def test_int_max_value_signed(self):
-        pass
+        signed = True
+        max_value = int_max_value(self.bits,signed)
+        self.assertEqual(max_value,self.signed_expected_max)
 
     def test_int_max_value_unsigned(self):
-        pass
+        signed = False
+        max_value = int_max_value(self.bits,signed)
+        self.assertEqual(max_value,self.unsigned_expected_max)
