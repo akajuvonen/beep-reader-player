@@ -6,3 +6,9 @@ class CalculateFreqTest(unittest.TestCase):
     def setUp(self):
         """Set up method for tests."""
         pass
+
+    def test_calc_note_freq(self):
+        """Test for calculating note frequency"""
+        note = 'A4'
+        freq = calculate_note_freq(note)
+        self.assertEqual(freq,440.0)
