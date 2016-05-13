@@ -9,7 +9,7 @@ def note_file_parser(filename):
     for item in blocks:
         note, duration = item.split(':')
         notes.append(note)
-        durations.append(duration)
+        durations.append(float(duration))
     return notes,durations
 
 def main():
