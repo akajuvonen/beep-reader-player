@@ -1,11 +1,15 @@
 #!/usr/bin/env python
 
 def note_file_parser(filename):
+    notes = []
+    durations = []
     with open(filename,'r') as f:
         contents = f.read()
-    # Dummy return for now
-    notes = ['C4','D4','E4']
-    durations = [1.0,1.0,1.0]
+    blocks = contents.split(',')
+    for item in blocks:
+        note, duration = item.split(':')
+        notes.append(note)
+        durations.append(duration)
     return notes,durations
 
 def main():
