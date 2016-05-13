@@ -14,6 +14,9 @@ def note_file_parser(filename):
 
 def main():
     filename = 'tests/notefile.txt'
+    notes,durations = note_file_parser(filename)
+    print(notes)
+    print(durations)
 
 if __name__=='__main__':
     main()
