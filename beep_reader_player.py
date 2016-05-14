@@ -107,13 +107,9 @@ def main():
     # In this case: mono
     channels = 1
     filename = 'tests/notefile.txt'
-    notes,durations = note_file_parser(filename)
+    notes,durations,volumes = note_file_parser(filename)
     # The duration this program is alive, right now the same as note duration
     wait_duration = sum(durations)
-    # In this case all volume values are 0.5
-    volumes = []
-    for i in range(len(notes)):
-        volumes.append(0.5)
     # Note frequencies
     freqs = []
     for note in notes:
