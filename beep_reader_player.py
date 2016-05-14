@@ -3,6 +3,8 @@
 import pygame
 import numpy as np
 
+from note_file_parser import note_file_parser
+
 def int_max_value(bits,signed=True):
     """Returns the maximum int value of a signed or unsigned integer
     based on used bits.
@@ -104,9 +106,10 @@ def main():
     bits = 16
     # In this case: mono
     channels = 1
-    # The notes to be played
-    notes = ['C4','D4','E4','F4','G4']
-    # Volumes from 0 to 1
+    filename = 'tests/notefile.txt'
+    notes,durations = note_file_parser(filename)
+    # The duration this program is alive, right now the same as note duration
+    wait_duration = sum(durations)
     # In this case all volume values are 0.5
     volumes = []
     for i in range(len(notes)):
@@ -115,10 +118,6 @@ def main():
     freqs = []
     for note in notes:
         freqs.append(calculate_note_freq(note))
-    # Note durations in seconds
-    durations = [1.0,1.0,1.0,1.0,1.0]
-    # The duration this program is alive, right now the same as note duration
-    wait_duration = sum(durations)
 
     # Initialize pygame mixer
     pygame.mixer.pre_init(sampling_rate, -bits, channels) 
