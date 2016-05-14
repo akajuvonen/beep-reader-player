@@ -12,6 +12,8 @@ The format should include note and octave, and the duration in seconds:
 
 `C4:1.0,D4:1.0,E4:1.0`
 
+Note: For now, it's better not to use linebreaks, the parsing will be updated.
+
 # Tests
 
 The easiest way to run tests is `nosetests -v` .
