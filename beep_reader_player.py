@@ -100,6 +100,17 @@ def calculate_note_freq(note):
     freq = f0 * pow(a,n)
     return freq
 
+def make_sound(melody):
+    """Returns pygame sndarray sound.
+    Arguments:
+    melody - The whole melody as int values as a numpy array
+    Returns:
+    sound - x
+    """
+    # Get the sound based on the array
+    sound = pygame.sndarray.make_sound(melody)
+    return sound
+
 def play_song(sampling_rate,bits,channels,filename):
     """Plays the song based on some parameters and the notefile.
     Arguments:
@@ -129,8 +140,8 @@ def play_song(sampling_rate,bits,channels,filename):
     # Also, in this phase the whole array is converted to integers.
     # Floats cannot be used for pygame sndarray.
     melody = np.array(melody).astype(np.int16)
-    # Get the sound based on the array
-    sound = pygame.sndarray.make_sound(melody)
+    # Create the sound
+    sound = make_sound(melody)
     # Play and loop
     sound.play()
     # Stop after <duration>
