@@ -101,6 +101,13 @@ def calculate_note_freq(note):
     return freq
 
 def play_song(sampling_rate,bits,channels,filename):
+    """Plays the song based on some parameters and the notefile.
+    Arguments:
+    sampling_rate - The sampling rate, e.g., 44100 (int)
+    bits - Bitrate, e.g., 16 (int)
+    channels - How many channels, e.g., 1 (mono) (int)
+    filename - The name of the notefile to be parsed (string)
+    """
     notes,durations,volumes = note_file_parser(filename)
     # The duration this program is alive, right now the same as note duration
     wait_duration = sum(durations)
@@ -138,7 +145,9 @@ def main():
     bits = 16
     # In this case: mono
     channels = 1
+    # The note file
     filename = 'tests/notefile.txt'
+    # Play the song
     play_song(sampling_rate,bits,channels,filename)
 
 if __name__=="__main__":
