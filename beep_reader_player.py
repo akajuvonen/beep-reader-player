@@ -100,13 +100,7 @@ def calculate_note_freq(note):
     freq = f0 * pow(a,n)
     return freq
 
-def main():
-    # Set some variables
-    sampling_rate = 8000
-    bits = 16
-    # In this case: mono
-    channels = 1
-    filename = 'tests/notefile.txt'
+def play_song(sampling_rate,bits,channels,filename):
     notes,durations,volumes = note_file_parser(filename)
     # The duration this program is alive, right now the same as note duration
     wait_duration = sum(durations)
@@ -136,6 +130,16 @@ def main():
     pygame.time.delay(int(wait_duration*1000))
     # Stop playing
     sound.stop()
+
+
+def main():
+    # Set some variables
+    sampling_rate = 8000
+    bits = 16
+    # In this case: mono
+    channels = 1
+    filename = 'tests/notefile.txt'
+    play_song(sampling_rate,bits,channels,filename)
 
 if __name__=="__main__":
     main()
