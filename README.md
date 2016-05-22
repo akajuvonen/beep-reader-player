@@ -1,6 +1,6 @@
 # Beep reader player
 
-A python program that reads notes and durations from a text file and plays them back as sine waves. TODO: Also volumes should be read from the file.
+A python program that reads notes and durations from a text file and plays them back as sine waves. Also volumes should be read from the file.
 
 Note frequencies are automatically calculated. There is no need for huge lookup tables.
 
