@@ -1,5 +1,9 @@
 #!/usr/bin/env python
 
+# The custom exception class
+class NoteFileParsingException(Exception):
+    pass
+
 def note_file_parser(filename):
     # Init notes and durations lists, also volumes
     notes = []
