@@ -13,4 +13,8 @@ class NoteFileParserTest(unittest.TestCase):
 
     def raise_error_test(self):
         """Raise an exception in case the note file parsing fails"""
+        # assertRaises has the following arguments:
+        # 1) the expected exception
+        # 2) the tested function
+        # 3) all of the arguments passed to the tested function (in this case one)
         self.assertRaises(NoteFileParsingException, note_file_parser, 'tests/notefile_error.txt')
