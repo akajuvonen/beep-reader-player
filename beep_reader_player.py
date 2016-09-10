@@ -2,6 +2,7 @@
 
 import pygame
 import numpy as np
+from config import config as options
 
 from note_file_parser import note_file_parser
 
@@ -152,12 +153,12 @@ def play_song(sampling_rate,bits,channels,filename):
 
 def main():
     # Set some variables
-    sampling_rate = 8000
-    bits = 16
+    sampling_rate = options.sampling_rate
+    bits = options.bits
     # In this case: mono
-    channels = 1
+    channels = options.channels
     # The note file
-    filename = 'tests/notefile.txt'
+    filename = options.filename
     # Play the song
     play_song(sampling_rate,bits,channels,filename)
 
