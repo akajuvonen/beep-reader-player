@@ -6,6 +6,10 @@ Note frequencies are automatically calculated. There is no need for huge lookup 
 
 Uses pygame (mainly sndarray) to play waveforms. Requires python 2.x (unless you have a suitably new version of pygame, in which 3.x is also ok.)
 
+# Options
+
+Configuration can be changed from `config/config.py`.
+
 # Notefile format
 
 The format should include note and octave, and the duration in seconds:
@@ -14,6 +18,6 @@ The format should include note and octave, and the duration in seconds:
 
 Note: For now, it's better not to use linebreaks, the parsing will be updated.
 
-# Tests
+# Unit tests
 
 The easiest way to run tests is `nosetests -v` .
