@@ -2,15 +2,17 @@
 
 A python program that reads notes and durations from a text file and plays them back as sine waves. Also volumes are read from the file.
 
-Note frequencies are automatically calculated. There is no need for huge lookup tables.
+Note frequencies are automatically calculated using a formula. There is no need for huge lookup tables.
 
-Uses pygame (mainly sndarray) to play waveforms. Requires python 2.x (unless you have a suitably new version of pygame, in which 3.x is also ok.)
+## Dependencies
 
-# Options
+Initially just python, virtualenv and pip are needed. Use virtualenv (highly recommended). You can install needed dependencies using `make init`.
+
+## Options
 
 Configuration can be changed from `config/config.py`.
 
-# Notefile format
+## Notefile format
 
 The format should include note and octave, and the duration in seconds:
 
@@ -18,6 +20,10 @@ The format should include note and octave, and the duration in seconds:
 
 Note: For now, it's better not to use linebreaks, the parsing will be updated.
 
-# Unit tests
+## Unit tests
 
-The easiest way to run tests is `nosetests -v` .
+Just run `make test`.
+
+## Make clean
+
+Remove pyc files with `make clean`.
