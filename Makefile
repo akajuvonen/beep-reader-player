@@ -1,7 +1,7 @@
 all:	init
 
 init:
-	pip install -r
+	pip install -r requirements.txt
 
 test:
 	nosetests -v
