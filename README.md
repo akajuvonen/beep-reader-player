@@ -6,7 +6,11 @@ Note frequencies are automatically calculated using a formula. There is no need 
 
 ## Dependencies
 
-Initially just python, virtualenv and pip are needed. Use virtualenv (highly recommended). You can install needed dependencies using `make init`. The required packages are listed in `requirements.txt`.
+Initially just python, virtualenv and pip are needed. Use virtualenv (highly recommended): `virtualenv env_folder --no-site-packages`. You can install needed dependencies using `make init`. The required packages are listed in `requirements.txt`.
+
+## Running
+
+After installing the required dependencies, use `make run` to run the example program in found in main function.
 
 ## Options
 
