@@ -1,15 +1,18 @@
 all:	init
 
 init:
-	pip install -r requirements.txt
+	bin/init.sh
 
 test:
-	nosetests -v
+	bin/init.sh
+	bin/test.sh
 
 run:
-	python beep_reader_player.py
+	bin/init.sh
+	bin/run.sh
 
 clean:
 	rm -fv *.pyc
 	rm -fv tests/*.pyc
 	rm -fv config/*.pyc
+	rm -rfv .env/
