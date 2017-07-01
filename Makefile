@@ -16,3 +16,4 @@ clean:
 	rm -fv tests/*.pyc
 	rm -fv config/*.pyc
 	rm -rfv .env/
+	rm -fv .coverage
