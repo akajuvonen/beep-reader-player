@@ -3,10 +3,10 @@
 import pygame
 import numpy as np
 from config import config as options
-
 from note_file_parser import note_file_parser
 
-def int_max_value(bits,signed=True):
+
+def int_max_value(bits, signed=True):
     """Returns the maximum int value of a signed or unsigned integer
     based on used bits.
     Arguments:
@@ -17,14 +17,14 @@ def int_max_value(bits,signed=True):
     """
     if signed:
         # Signed int
-        max_value = pow(2,bits-1)-1
+        max_value = pow(2, bits-1) - 1
     else:
         # Unsigned int
-        max_value = pow(2,bits)-1
+        max_value = pow(2, bits) - 1
     return max_value
 
-# Add the data points to an array (create the wave)
-def create_note(bits,sampling_rate,volume,freq,duration):
+
+def create_note(bits, sampling_rate, volume, freq, duration):
     """Creates a single note as a sine wave.
     Arguments:
     bits -- How many bits are used in the values, e.g., 16
@@ -37,20 +37,25 @@ def create_note(bits,sampling_rate,volume,freq,duration):
     """
     # Make sure volume between 0 and 1
     # The max int value will be multiplied by this
-    if volume<0.0: volume = 0.0
-    if volume>1.0: volume = 1.0
+    if volume < 0.0:
+        volume = 0.0
+    if volume > 1.0:
+        volume = 1.0
     # Calculate the maximum int value based on the used bit value (signed int)
-    # Basically: what is the maximum signed int value for the amount of bits selected
+    # Basically: what is the maximum signed int value for the amount of bits
+    # selected
     max_value = int_max_value(bits)
     # An empty list
     note = []
     # Fill the list with sine wave values
-    for x in range(0,int(sampling_rate*duration)):
-        value = volume * max_value * np.sin(2 * np.pi * freq * x / sampling_rate)
+    for x in range(0, int(sampling_rate * duration)):
+        value = volume * max_value * np.sin(2 * np.pi * freq * x /
+                                            sampling_rate)
         note.append(value)
     return note
 
-def create_melody(bits,sampling_rate,volumes,freqs,durations):
+
+def create_melody(bits, sampling_rate, volumes, freqs, durations):
     """Creates and returns a melody consisting of one or more notes.
     Arguments:
     bits -- How many bits are used in the values, e.g., 16
@@ -63,15 +68,17 @@ def create_melody(bits,sampling_rate,volumes,freqs,durations):
     """
     melody = []
     # Go through the list
-    for volume,freq,duration in zip(volumes,freqs,durations):
+    for volume, freq, duration in zip(volumes, freqs, durations):
         # Create an individual note
-        note = create_note(bits,sampling_rate,volume,freq,duration)
+        note = create_note(bits, sampling_rate, volume, freq, duration)
         # Add a note to the melody list
         melody.extend(note)
     return melody
 
+
 def calculate_note_freq(note):
-    """Calculates the frequency of a give note based on it's name and frequency of A4=440Hz.
+    """Calculates the frequency of a give note based on it's name and
+    frequency of A4=440Hz.
     All notes and octaves are supported. Not case sensitive.
     Arguments:
     note -- The note name and octave, e.g., 'C4' (string)
@@ -83,7 +90,7 @@ def calculate_note_freq(note):
     # The octave of the note, e.g., 4
     note_octave = int(note[1])
     # The note name list
-    notes = ['C','C#','D','D#','E','F','F#','G','G#','A','A#','B']
+    notes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
     # The index of A in the list
     baseind = 9
     # The index of the note in the list
@@ -92,14 +99,15 @@ def calculate_note_freq(note):
     n = noteind - baseind
     # Take into account the octave (relative to A4, that's why we have 4 here)
     # Now n is the number of semitones difference from the note and A4
-    n = n + (4-note_octave)*12
+    n = n + (4 - note_octave) * 12
     # Approximately 2^(1/12)
     a = 1.059463094359
     # Frequency of A4
     f0 = 440
     # The frequency calculation
-    freq = f0 * pow(a,n)
+    freq = f0 * pow(a, n)
     return freq
+
 
 def make_sound(melody):
     """Returns pygame sndarray sound.
@@ -112,7 +120,8 @@ def make_sound(melody):
     sound = pygame.sndarray.make_sound(melody)
     return sound
 
-def play_song(sampling_rate,bits,channels,filename):
+
+def play_song(sampling_rate, bits, channels, filename):
     """Plays the song based on some parameters and the notefile.
     Arguments:
     sampling_rate - The sampling rate, e.g., 44100 (int)
@@ -120,7 +129,7 @@ def play_song(sampling_rate,bits,channels,filename):
     channels - How many channels, e.g., 1 (mono) (int)
     filename - The name of the notefile to be parsed (string)
     """
-    notes,durations,volumes = note_file_parser(filename)
+    notes, durations, volumes = note_file_parser(filename)
     # The duration this program is alive, right now the same as note duration
     wait_duration = sum(durations)
     # Note frequencies
@@ -129,11 +138,11 @@ def play_song(sampling_rate,bits,channels,filename):
         freqs.append(calculate_note_freq(note))
 
     # Initialize pygame mixer
-    pygame.mixer.pre_init(sampling_rate, -bits, channels) 
+    pygame.mixer.pre_init(sampling_rate, -bits, channels)
     pygame.init()
 
     # Create the wave
-    melody = create_melody(bits,sampling_rate,volumes,freqs,durations)
+    melody = create_melody(bits, sampling_rate, volumes, freqs, durations)
     # Create a numpy array of the list, needed later.
     # Note: We don't create a numpy array earlier, because when
     # appending values to it, a new array is always created.
@@ -146,7 +155,7 @@ def play_song(sampling_rate,bits,channels,filename):
     # Play and loop
     sound.play()
     # Stop after <duration>
-    pygame.time.delay(int(wait_duration*1000))
+    pygame.time.delay(int(wait_duration * 1000))
     # Stop playing
     sound.stop()
 
@@ -160,7 +169,7 @@ def main():
     # The note file
     filename = options.filename
     # Play the song
-    play_song(sampling_rate,bits,channels,filename)
+    play_song(sampling_rate, bits, channels, filename)
 
-if __name__=="__main__":
+if __name__ == "__main__":
     main()
