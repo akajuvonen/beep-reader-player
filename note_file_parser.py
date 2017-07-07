@@ -1,8 +1,10 @@
 #!/usr/bin/env python
 
+
 # The custom exception class
 class NoteFileParsingException(Exception):
     pass
+
 
 def note_file_parser(filename):
     # Init notes and durations lists, also volumes
@@ -10,7 +12,7 @@ def note_file_parser(filename):
     durations = []
     volumes = []
     # Open file and read contents to string
-    with open(filename,'r') as f:
+    with open(filename, 'r') as f:
         contents = f.read()
     try:
         # Divide string to blocks which contain 'note:duration'
@@ -25,14 +27,16 @@ def note_file_parser(filename):
             volumes.append(float(volume))
     except:
         # If something goes wrong
-        raise NoteFileParsingException('Error in parsing the note file. Check the format.')
-    return notes,durations,volumes
+        raise NoteFileParsingException('Error in parsing the note file. '
+                                       'Check the format.')
+    return notes, durations, volumes
+
 
 def main():
     filename = 'tests/notefile.txt'
-    notes,durations = note_file_parser(filename)
+    notes, durations = note_file_parser(filename)
     print(notes)
     print(durations)
 
-if __name__=='__main__':
+if __name__ == '__main__':
     main()
