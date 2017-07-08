@@ -1,6 +1,7 @@
 import unittest
 from beep_reader_player import int_max_value
 
+
 class IntMaxTest(unittest.TestCase):
     """Tests for integer max value calculation function"""
     def setUp(self):
@@ -12,11 +13,11 @@ class IntMaxTest(unittest.TestCase):
     def test_int_max_value_signed(self):
         """Test signed integer max value calculation"""
         signed = True
-        max_value = int_max_value(self.bits,signed)
-        self.assertEqual(max_value,self.signed_expected_max)
+        max_value = int_max_value(self.bits, signed)
+        self.assertEqual(max_value, self.signed_expected_max)
 
     def test_int_max_value_unsigned(self):
         """Test unsigned integer max value calculation"""
         signed = False
-        max_value = int_max_value(self.bits,signed)
-        self.assertEqual(max_value,self.unsigned_expected_max)
+        max_value = int_max_value(self.bits, signed)
+        self.assertEqual(max_value, self.unsigned_expected_max)
