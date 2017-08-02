@@ -26,8 +26,8 @@ Note: For now, it's better not to use linebreaks, the parsing will be updated. I
 
 ## Unit tests
 
-Just run `make test`.
+Just run `make test` to run the test suite.
 
 ## Make clean
 
-Remove pyc files with `make clean`.
+Running `make clean` will remove the virtual environment folder, pyc-files and other temporary files, restoring the folder to it's original state.
