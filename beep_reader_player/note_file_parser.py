@@ -1,6 +1,3 @@
-#!/usr/bin/env python
-
-
 # The custom exception class
 class NoteFileParsingException(Exception):
     pass

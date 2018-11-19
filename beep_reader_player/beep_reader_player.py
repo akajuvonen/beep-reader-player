@@ -1,9 +1,6 @@
-#!/usr/bin/env/python
-
 import pygame
 import numpy as np
-from config import config as options
-from note_file_parser import note_file_parser
+from beep_reader_player.note_file_parser import note_file_parser
 
 
 def int_max_value(bits, signed=True):
@@ -16,10 +13,8 @@ def int_max_value(bits, signed=True):
     max_value -- The maximum int value based on given parameters
     """
     if signed:
-        # Signed int
-        max_value = pow(2, bits-1) - 1
+        max_value = pow(2, bits - 1) - 1
     else:
-        # Unsigned int
         max_value = pow(2, bits) - 1
     return max_value
 
@@ -45,7 +40,6 @@ def create_note(bits, sampling_rate, volume, freq, duration):
     # Basically: what is the maximum signed int value for the amount of bits
     # selected
     max_value = int_max_value(bits)
-    # An empty list
     note = []
     # Fill the list with sine wave values
     for x in range(0, int(sampling_rate * duration)):
@@ -156,19 +150,14 @@ def play_song(sampling_rate, bits, channels, filename):
     sound.play()
     # Stop after <duration>
     pygame.time.delay(int(wait_duration * 1000))
-    # Stop playing
     sound.stop()
 
 
 def main():
-    # Set some variables
-    sampling_rate = options.sampling_rate
-    bits = options.bits
-    # In this case: mono
-    channels = options.channels
-    # The note file
-    filename = options.filename
-    # Play the song
+    sampling_rate = 8000
+    bits = 16
+    channels = 1
+    filename = 'test/notefile.txt'
     play_song(sampling_rate, bits, channels, filename)
 
 if __name__ == "__main__":

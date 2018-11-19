@@ -4,17 +4,21 @@ A python program that reads notes and durations from a text file and plays them 
 
 Note frequencies are automatically calculated using a formula. There is no need for huge lookup tables. The program therefore supports any notes.
 
-## Dependencies
+## Installation
 
-Initially you need python and virtualenv to be installed. You can install needed dependencies using `make init`. The virtual environment and dependency installation are automatically done, system python packages are not affected. The packages are also listed in `requirements.txt`.
+Install using `pip install .` in the project directory (virtual environment recommended).
 
-## Running
+For development, install dependencies with `pip install -r requirements.txt`.
 
-After installing the required dependencies, use `make run` to run the example program in found in main function. It should play back a short melody.
+## Usage
 
-## Options
+### Command line
 
-Configuration can be changed from `config/config.py`.
+Run command `beep-reader-player` to play an example melody.
+
+### Importing module
+
+TODO.
 
 ## Notefile format
 
@@ -24,10 +28,6 @@ The format should include note and octave, and the duration in seconds:
 
 Note: For now, it's better not to use linebreaks, the parsing will be updated. In addition, for now you can only play notes but not rests. Only one note at a time is played.
 
-## Unit tests
+## Running tests
 
-Just run `make test` to run the test suite.
-
-## Make clean
-
-Running `make clean` will remove the virtual environment folder, pyc-files and other temporary files, restoring the folder to it's original state.
+TODO.
